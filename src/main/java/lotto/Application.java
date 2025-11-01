@@ -7,6 +7,7 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         Parser parser = new Parser();
+        LottoMachine lottoMachine = new LottoMachine();
 
         while (true) {
             try {
@@ -20,6 +21,11 @@ public class Application {
                 Price price = new Price(intPrice);
                 int lottoCnt = price.toLottoCount();
                 OutputView.printLottoCount(lottoCnt);
+
+                // 로또 하나 생성
+                Lotto testLotto = lottoMachine.lottoGenerate();
+                System.out.println(testLotto);
+
                 return;
             } catch (IllegalArgumentException e) {
                 // TODO view로 변경하기

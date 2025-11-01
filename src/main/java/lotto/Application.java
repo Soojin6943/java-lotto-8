@@ -25,7 +25,7 @@ public class Application {
 
                 // 로또
                 List<Lotto> lottos = lottoMachine.generateLottos(lottoCnt);
-
+                OutputView.printLottos(lottos);
                 return;
             } catch (IllegalArgumentException e) {
                 // TODO view로 변경하기

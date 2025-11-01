@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,9 +23,8 @@ public class Application {
                 int lottoCnt = price.toLottoCount();
                 OutputView.printLottoCount(lottoCnt);
 
-                // 로또 하나 생성
-                Lotto testLotto = lottoMachine.lottoGenerate();
-                System.out.println(testLotto);
+                // 로또
+                List<Lotto> lottos = lottoMachine.GenerateLottos(lottoCnt);
 
                 return;
             } catch (IllegalArgumentException e) {

@@ -12,5 +12,8 @@ public class Application {
 
         int intPrice = price.parseAmount(amountPrice);
         System.out.println(intPrice);
+
+        int lottoCnt = price.toLottoCount(intPrice);
+        System.out.println(lottoCnt);
     }
 }

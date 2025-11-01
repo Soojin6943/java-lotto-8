@@ -2,17 +2,24 @@ package lotto;
 
 public class Price {
 
-    private final int UNIT = 1000;
+    private static final int UNIT = 1000;
+    private final int value;
 
-    public int parseAmount(String amount) {
-        try {
-            return Integer.parseInt(amount.trim());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자여야 합니다.");
+    public Price(int value) {
+        validate(value);
+        this.value = value;
+    }
+
+    private void validate(int value) {
+        if (value < UNIT) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원보다 작을 수 없습니다.");
+        }
+        if (value % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구매금액은 1,000단위입니다.");
         }
     }
 
-    public int toLottoCount(int amountPrice) {
-        return amountPrice/UNIT;
+    public int toLottoCount() {
+        return value / UNIT;
     }
 }

@@ -24,7 +24,7 @@ public class Application {
                 OutputView.printLottoCount(lottoCnt);
 
                 // 로또
-                List<Lotto> lottos = lottoMachine.GenerateLottos(lottoCnt);
+                List<Lotto> lottos = lottoMachine.generateLottos(lottoCnt);
 
                 return;
             } catch (IllegalArgumentException e) {

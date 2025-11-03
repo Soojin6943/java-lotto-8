@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
+    private static final int MIN = 1;
+    private static final int MAX = 45;
+    private static final int COUNT = 6;
 
     public List<Lotto> generateLottos(int lottoCnt) {
         List<Lotto> lottos = new ArrayList<>();
@@ -24,6 +27,6 @@ public class LottoMachine {
     }
 
     private static List<Integer> randomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN, MAX, COUNT));
     }
 }

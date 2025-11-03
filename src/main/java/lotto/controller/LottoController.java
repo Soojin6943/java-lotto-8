@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Set;
 import lotto.Lotto;
 import lotto.LottoMachine;
 import lotto.Parser;
 import lotto.Price;
+import lotto.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,25 +16,37 @@ public class LottoController {
     private final LottoMachine lottoMachine = new LottoMachine();
 
     public void run() {
-        while (true) {
+        Price price = validPrice();
+
+        int lottoCnt = price.toLottoCount();
+        OutputView.printLottoCount(lottoCnt);
+
+        List<Lotto> lottos = lottoMachine.generateLottos(lottoCnt);
+        OutputView.printLottos(lottos);
+
+        WinningNumbers winningNumbers = validWinningNumbers();
+    }
+
+    private Price validPrice() {
+        while(true) {
             try {
-                // 문자열로 입력받은 구매 금액
                 String amountPrice = inputView.readAmountPrice();
-
-                // 문자열 구매 금액 -> 정수 구매금액
                 int intPrice = parser.parseAmount(amountPrice);
-
-                // 구매 금액을 가격으로
                 Price price = new Price(intPrice);
-                int lottoCnt = price.toLottoCount();
-                OutputView.printLottoCount(lottoCnt);
-
-                // 로또
-                List<Lotto> lottos = lottoMachine.generateLottos(lottoCnt);
-                OutputView.printLottos(lottos);
-                break;
+                return price;
             } catch (IllegalArgumentException e) {
-                // TODO view로 변경하기
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningNumbers validWinningNumbers() {
+        while(true) {
+            try {
+                String inputWinningNumbers = inputView.readWinningNumbers();
+                WinningNumbers winningNumbers = new WinningNumbers(parser.parseWinningNumbers(inputWinningNumbers));
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

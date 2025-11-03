@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.Parser;
@@ -24,6 +25,7 @@ public class LottoController {
         OutputView.printLottos(lottos);
 
         WinningNumbers winningNumbers = validWinningNumbers();
+        BonusNumber bonusNumber = validBonusNumber(winningNumbers);
     }
 
     private Price validPrice() {
@@ -45,6 +47,19 @@ public class LottoController {
                 String inputWinningNumbers = inputView.readWinningNumbers();
                 WinningNumbers winningNumbers = new WinningNumbers(parser.parseWinningNumbers(inputWinningNumbers));
                 return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber validBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                String bonus = inputView.readBonusNumber();
+                int number = parser.parseBonusNumber(bonus);
+                BonusNumber bonusNumber = new BonusNumber(number, winningNumbers);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

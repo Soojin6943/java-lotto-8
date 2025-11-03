@@ -25,4 +25,13 @@ public class Parser {
             throw new IllegalArgumentException("[ERROR] 잘못된 형식의 로또 번호 입니다.");
         }
     }
+
+    public int parseBonusNumber(String number) {
+        try {
+            int bonusNumber = Integer.parseInt(number);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 형식의 보너스 번호입니다.");
+        }
+    }
 }

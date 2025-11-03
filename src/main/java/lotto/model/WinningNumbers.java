@@ -19,4 +19,8 @@ public class WinningNumbers {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 존재합니다.");
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers;
+    }
 }

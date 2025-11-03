@@ -20,6 +20,9 @@ public class WinningNumbers {
         if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 존재합니다.");
         }
+        if (winningNumbers.stream().anyMatch(num -> num < MIN || num > MAX)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
     public List<Integer> getWinningNumbers() {

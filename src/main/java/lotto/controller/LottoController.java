@@ -4,8 +4,10 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.LottoResult;
 import lotto.model.Parser;
 import lotto.model.Price;
+import lotto.model.WinningLotto;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,6 +28,8 @@ public class LottoController {
 
         WinningNumbers winningNumbers = validWinningNumbers();
         BonusNumber bonusNumber = validBonusNumber(winningNumbers);
+
+        getResult(winningNumbers, bonusNumber, lottos, price);
     }
 
     private Price validPrice() {
@@ -64,5 +68,14 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void getResult(WinningNumbers winningNumbers, BonusNumber bonusNumber, List<Lotto> lottos, Price price) {
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto);
+
+        double profitRate = lottoResult.calculateProfitRate(price.getValue());
+
+        OutputView.printResult(lottoResult, profitRate);
     }
 }

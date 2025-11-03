@@ -4,6 +4,8 @@ import java.util.List;
 
 public class WinningNumbers {
     private static final int LOTTO_COUNT = 6;
+    private static final int MIN = 1;
+    private static final int MAX = 45;
     private List<Integer> winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {

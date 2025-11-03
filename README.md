@@ -93,7 +93,6 @@ lotto
 ```
 
 # 테스트
-🧪 테스트
 
 > JUnit5 + AssertJ 기반 단위 테스트 작성
 

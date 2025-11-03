@@ -1,12 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Set;
-import lotto.Lotto;
-import lotto.LottoMachine;
-import lotto.Parser;
-import lotto.Price;
-import lotto.WinningNumbers;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.Parser;
+import lotto.model.Price;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,7 +27,7 @@ public class LottoController {
     }
 
     private Price validPrice() {
-        while(true) {
+        while (true) {
             try {
                 String amountPrice = inputView.readAmountPrice();
                 int intPrice = parser.parseAmount(amountPrice);
@@ -41,7 +40,7 @@ public class LottoController {
     }
 
     private WinningNumbers validWinningNumbers() {
-        while(true) {
+        while (true) {
             try {
                 String inputWinningNumbers = inputView.readWinningNumbers();
                 WinningNumbers winningNumbers = new WinningNumbers(parser.parseWinningNumbers(inputWinningNumbers));

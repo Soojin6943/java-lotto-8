@@ -1,9 +1,8 @@
 package lotto.view;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class OutputView {
     public static void printLottoCount(int lottoCnt) {
